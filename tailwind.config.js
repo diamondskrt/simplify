@@ -1,0 +1,118 @@
+/** @type {import('tailwindcss').Config} */
+
+const colorsWithPossibleForeground = [
+  'accent',
+  'background',
+  'card',
+  'error',
+  'muted',
+  'popover',
+  'primary',
+  'secondary',
+  'sidebar',
+  'sidebar-accent',
+  'sidebar-primary',
+  'success',
+  'warning',
+];
+
+const colorsWithoutForeground = [
+  'border',
+  'chart-1',
+  'chart-2',
+  'chart-3',
+  'chart-4',
+  'chart-5',
+  'input',
+  'ring',
+  'sidebar-border',
+  'sidebar-ring',
+];
+
+module.exports = {
+  content: ['./src/**/*.{html,js,jsx,ts,tsx,mdx}'],
+  darkMode: process.env.DARK_MODE ?? 'media',
+  important: 'html',
+  presets: [require('nativewind/preset')],
+  safelist: [
+    {
+      // Для цветов, которые могут иметь -foreground
+      pattern: new RegExp(
+        `^(bg|border|text|stroke|fill)-(${colorsWithPossibleForeground.join('|')})(-foreground)?$`,
+      ),
+    },
+    {
+      // Для цветов без -foreground
+      pattern: new RegExp(`^(bg|border|text|stroke|fill)-(${colorsWithoutForeground.join('|')})$`),
+    },
+  ],
+  theme: {
+    colors: {
+      accent: 'rgb(var(--color-accent)/<alpha-value>)',
+      'accent-foreground': 'rgb(var(--color-accent-foreground)/<alpha-value>)',
+      background: 'rgb(var(--color-background)/<alpha-value>)',
+      'background-foreground': 'rgb(var(--color-background-foreground)/<alpha-value>)',
+      border: 'rgb(var(--color-border)/<alpha-value>)',
+      card: 'rgb(var(--color-card)/<alpha-value>)',
+      'card-foreground': 'rgb(var(--color-card-foreground)/<alpha-value>)',
+      'chart-1': 'rgb(var(--color-chart-1)/<alpha-value>)',
+      'chart-2': 'rgb(var(--color-chart-2)/<alpha-value>)',
+      'chart-3': 'rgb(var(--color-chart-3)/<alpha-value>)',
+      'chart-4': 'rgb(var(--color-chart-4)/<alpha-value>)',
+      'chart-5': 'rgb(var(--color-chart-5)/<alpha-value>)',
+      error: 'rgb(var(--color-error)/<alpha-value>)',
+      'error-foreground': 'rgb(var(--color-error-foreground)/<alpha-value>)',
+      input: 'rgb(var(--color-input)/<alpha-value>)',
+      muted: 'rgb(var(--color-muted)/<alpha-value>)',
+      'muted-foreground': 'rgb(var(--color-muted-foreground)/<alpha-value>)',
+      popover: 'rgb(var(--color-popover)/<alpha-value>)',
+      'popover-foreground': 'rgb(var(--color-popover-foreground)/<alpha-value>)',
+      primary: 'rgb(var(--color-primary)/<alpha-value>)',
+      'primary-foreground': 'rgb(var(--color-primary-foreground)/<alpha-value>)',
+      ring: 'rgb(var(--color-ring)/<alpha-value>)',
+      secondary: 'rgb(var(--color-secondary)/<alpha-value>)',
+      'secondary-foreground': 'rgb(var(--color-secondary-foreground)/<alpha-value>)',
+      sidebar: 'rgb(var(--color-sidebar)/<alpha-value>)',
+      'sidebar-accent': 'rgb(var(--color-sidebar-accent)/<alpha-value>)',
+      'sidebar-accent-foreground': 'rgb(var(--color-sidebar-accent-foreground)/<alpha-value>)',
+      'sidebar-border': 'rgb(var(--color-sidebar-border)/<alpha-value>)',
+      'sidebar-foreground': 'rgb(var(--color-sidebar-foreground)/<alpha-value>)',
+      'sidebar-primary': 'rgb(var(--color-sidebar-primary)/<alpha-value>)',
+      'sidebar-primary-foreground': 'rgb(var(--color-sidebar-primary-foreground)/<alpha-value>)',
+      'sidebar-ring': 'rgb(var(--color-sidebar-ring)/<alpha-value>)',
+      success: 'rgb(var(--color-success)/<alpha-value>)',
+      'success-foreground': 'rgb(var(--color-success-foreground)/<alpha-value>)',
+      warning: 'rgb(var(--color-warning)/<alpha-value>)',
+      'warning-foreground': 'rgb(var(--color-warning-foreground)/<alpha-value>)',
+    },
+    extend: {
+      boxShadow: {
+        'hard-1': '-2px 2px 8px 0px rgba(38, 38, 38, 0.20)',
+        'hard-2': '0px 3px 10px 0px rgba(38, 38, 38, 0.20)',
+        'hard-3': '2px 2px 8px 0px rgba(38, 38, 38, 0.20)',
+        'hard-4': '0px -3px 10px 0px rgba(38, 38, 38, 0.20)',
+        'hard-5': '0px 2px 10px 0px rgba(38, 38, 38, 0.10)',
+        'soft-1': '0px 0px 10px rgba(38, 38, 38, 0.1)',
+        'soft-2': '0px 0px 20px rgba(38, 38, 38, 0.2)',
+        'soft-3': '0px 0px 30px rgba(38, 38, 38, 0.1)',
+        'soft-4': '0px 0px 40px rgba(38, 38, 38, 0.1)',
+      },
+      fontFamily: {
+        body: undefined,
+        code: ['var(--font-source-code-pro)'],
+        heading: undefined,
+        inter: ['var(--font-inter)'],
+        jakarta: ['var(--font-plus-jakarta-sans)'],
+        mono: undefined,
+        roboto: ['var(--font-roboto)'],
+        'space-mono': ['var(--font-space-mono)'],
+      },
+      fontSize: {
+        '2xs': '10px',
+      },
+      fontWeight: {
+        extrablack: '950',
+      },
+    },
+  },
+};

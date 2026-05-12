@@ -1,7 +1,5 @@
-'use client';
-import { PrimitiveIcon } from '@gluestack-ui/core/icon/creator';
-import { useStyleContext, type VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { useStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import React from 'react';
 
 import {
@@ -12,23 +10,10 @@ import {
   buttonIconStyle,
   buttonGroupStyle,
 } from '../config';
-import { IButtonGroupProps, IButtonProps, IButtonTextProps } from '../model';
-
-cssInterop(PrimitiveIcon, {
-  className: {
-    nativeStyleToProp: {
-      color: 'classNameColor',
-      fill: true,
-      height: true,
-      stroke: true,
-      width: true,
-    },
-    target: 'style',
-  },
-});
+import type { IButtonGroupProps, IButtonIconProps, IButtonProps, IButtonTextProps } from '../model';
 
 const Button = React.forwardRef<React.ComponentRef<typeof UIButton>, IButtonProps>(
-  ({ action = 'primary', className, size = 'md', variant = 'solid', ...props }, ref) => {
+  ({ action = 'primary', className, size = 'xs', variant = 'solid', ...props }, ref) => {
     return (
       <UIButton
         ref={ref}
@@ -41,7 +26,7 @@ const Button = React.forwardRef<React.ComponentRef<typeof UIButton>, IButtonProp
 );
 
 const ButtonText = React.forwardRef<React.ComponentRef<typeof UIButton.Text>, IButtonTextProps>(
-  ({ action, className, size, variant, ...props }, ref) => {
+  ({ action, className, size, ...props }, ref) => {
     const {
       action: parentAction,
       size: parentSize,
@@ -61,7 +46,6 @@ const ButtonText = React.forwardRef<React.ComponentRef<typeof UIButton.Text>, IB
             variant: parentVariant,
           },
           size,
-          variant,
         })}
       />
     );
@@ -70,39 +54,16 @@ const ButtonText = React.forwardRef<React.ComponentRef<typeof UIButton.Text>, IB
 
 const ButtonSpinner = UIButton.Spinner;
 
-type IButtonIcon = React.ComponentPropsWithoutRef<typeof UIButton.Icon> &
-  VariantProps<typeof buttonIconStyle> & {
-    className?: string | undefined;
-    as?: React.ElementType;
-    height?: number;
-    width?: number;
-  };
-
-const ButtonIcon = React.forwardRef<React.ComponentRef<typeof UIButton.Icon>, IButtonIcon>(
-  ({ className, size, ...props }, ref) => {
+const ButtonIcon = React.forwardRef<React.ComponentRef<typeof Ionicons>, IButtonIconProps>(
+  function ButtonIcon({ className, size, ...props }, ref) {
     const {
       action: parentAction,
       size: parentSize,
       variant: parentVariant,
     } = useStyleContext(SCOPE);
 
-    if (typeof size === 'number') {
-      return (
-        <UIButton.Icon
-          ref={ref}
-          {...props}
-          className={buttonIconStyle({ class: className })}
-          size={size}
-        />
-      );
-    } else if ((props.height !== undefined || props.width !== undefined) && size === undefined) {
-      return (
-        <UIButton.Icon ref={ref} {...props} className={buttonIconStyle({ class: className })} />
-      );
-    }
     return (
-      <UIButton.Icon
-        {...props}
+      <Ionicons
         className={buttonIconStyle({
           class: className,
           parentVariants: {
@@ -112,6 +73,9 @@ const ButtonIcon = React.forwardRef<React.ComponentRef<typeof UIButton.Icon>, IB
           },
           size,
         })}
+        // to avoid fontSize default style
+        style={{ fontSize: null as unknown as number }}
+        {...props}
         ref={ref}
       />
     );
@@ -119,7 +83,7 @@ const ButtonIcon = React.forwardRef<React.ComponentRef<typeof UIButton.Icon>, IB
 );
 
 const ButtonGroup = React.forwardRef<React.ComponentRef<typeof UIButton.Group>, IButtonGroupProps>(
-  ({ className, flexDirection = 'column', isAttached = false, space = 'md', ...props }, ref) => {
+  ({ className, flexDirection = 'column', isAttached = false, space, ...props }, ref) => {
     return (
       <UIButton.Group
         className={buttonGroupStyle({

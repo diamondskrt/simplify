@@ -1,0 +1,1 @@
+export { vStackStyle } from './styles';

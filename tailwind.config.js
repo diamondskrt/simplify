@@ -84,6 +84,9 @@ module.exports = {
       'success-foreground': 'rgb(var(--color-success-foreground)/<alpha-value>)',
       warning: 'rgb(var(--color-warning)/<alpha-value>)',
       'warning-foreground': 'rgb(var(--color-warning-foreground)/<alpha-value>)',
+      transparent: 'transparent',
+      white: 'white',
+      black: 'black',
     },
     extend: {
       boxShadow: {

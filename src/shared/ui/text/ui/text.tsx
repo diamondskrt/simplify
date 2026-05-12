@@ -2,7 +2,7 @@ import React from 'react';
 import { Text as RNText } from 'react-native';
 
 import { textStyle } from '../config';
-import { ITextProps } from '../model';
+import type { ITextProps } from '../model';
 
 const Text = React.forwardRef<React.ComponentRef<typeof RNText>, ITextProps>(function Text(
   {

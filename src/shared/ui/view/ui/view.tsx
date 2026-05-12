@@ -2,9 +2,9 @@ import { cn } from '@gluestack-ui/utils/nativewind-utils';
 import React from 'react';
 import { View as RNView } from 'react-native';
 
-import { IViewProps } from '../model';
+import type { IViewProps } from '../model';
 
-const View = React.forwardRef<React.ComponentRef<typeof RNView>, IViewProps>(function Text(
+const View = React.forwardRef<React.ComponentRef<typeof RNView>, IViewProps>(function View(
   { className, ...props },
   ref,
 ) {

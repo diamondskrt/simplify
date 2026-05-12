@@ -17,6 +17,15 @@ module.exports = function (api) {
       'react-native-worklets/plugin',
     ],
 
-    presets: [['babel-preset-expo'], 'nativewind/babel'],
+    presets: [
+      [
+        'babel-preset-expo',
+        {
+          jsxImportSource: 'nativewind',
+          unstable_transformImportMeta: true,
+        },
+      ],
+      'nativewind/babel',
+    ],
   };
 };

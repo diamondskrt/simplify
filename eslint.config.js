@@ -2,15 +2,27 @@ const expoConfig = require('eslint-config-expo/flat');
 const eslintPluginPerfectionist = require('eslint-plugin-perfectionist');
 const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
 const { defineConfig } = require('eslint/config');
+const tseslint = require('typescript-eslint');
 
 module.exports = defineConfig([
   expoConfig,
   eslintPluginPrettierRecommended,
+  tseslint.configs.strict,
+  tseslint.configs.stylistic,
+  {
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+      },
+    },
+  },
   {
     plugins: {
       perfectionist: eslintPluginPerfectionist,
     },
     rules: {
+      '@typescript-eslint/consistent-type-exports': 'error',
+      '@typescript-eslint/consistent-type-imports': 'error',
       'perfectionist/sort-exports': [
         'error',
         {
@@ -37,6 +49,6 @@ module.exports = defineConfig([
     },
   },
   {
-    ignores: ['dist/*', 'node_modules/*', '.expo/*'],
+    ignores: ['dist/*', 'node_modules/*', '.expo/*', '**/*.js'],
   },
 ]);

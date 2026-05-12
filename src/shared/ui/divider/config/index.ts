@@ -1,0 +1,1 @@
+export { dividerStyle } from './styles';

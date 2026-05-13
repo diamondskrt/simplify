@@ -39,16 +39,11 @@ module.exports = defineConfig([
           type: 'natural',
         },
       ],
-      'perfectionist/sort-objects': [
-        'error',
-        {
-          type: 'alphabetical',
-        },
-      ],
       'react/display-name': 'off',
+      'import/no-named-as-default': 'off',
     },
   },
   {
-    ignores: ['dist/*', 'node_modules/*', '.expo/*', '**/*.js'],
+    ignores: ['dist/*', 'node_modules/*', '.expo/*', '**/*.js', '**/__generated__'],
   },
 ]);

@@ -1,13 +1,34 @@
+import { ApolloProvider } from '@apollo/client/react';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
 import { GluestackUIProvider } from '~/app/providers';
+import { useAuthStore } from '~/shared/api';
+import { useHydration } from '~/shared/hooks';
+import { queryClient, apolloClient } from '~/shared/lib';
 
 import '../global.css';
 
-SplashScreen.preventAutoHideAsync();
+void SplashScreen.preventAutoHideAsync();
+
+function RootNavigator() {
+  const isSignedIn = useAuthStore((state) => !!state.session);
+
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Protected guard={Boolean(isSignedIn)}>
+        <Stack.Screen name="(tabs)" />
+      </Stack.Protected>
+
+      <Stack.Protected guard={!isSignedIn}>
+        <Stack.Screen name="(auth)" />
+      </Stack.Protected>
+    </Stack>
+  );
+}
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -22,19 +43,25 @@ export default function RootLayout() {
     'sans-thin': require('~/assets/fonts/Roboto/Roboto-Thin.ttf'),
   });
 
+  const { isHydrated } = useHydration();
+
   useEffect(() => {
-    if (loaded || error) {
+    if ((loaded || error) && isHydrated) {
       SplashScreen.hideAsync();
     }
-  }, [loaded, error]);
+  }, [loaded, error, isHydrated]);
 
-  if (!loaded && !error) {
+  if ((!loaded && !error) || !isHydrated) {
     return null;
   }
 
   return (
-    <GluestackUIProvider mode="dark">
-      <Stack screenOptions={{ headerShown: false }} />
-    </GluestackUIProvider>
+    <ApolloProvider client={apolloClient}>
+      <QueryClientProvider client={queryClient}>
+        <GluestackUIProvider mode="dark">
+          <RootNavigator />
+        </GluestackUIProvider>
+      </QueryClientProvider>
+    </ApolloProvider>
   );
 }

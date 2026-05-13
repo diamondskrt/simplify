@@ -36,7 +36,8 @@
             "./assets/fonts/Roboto/Roboto-Thin.ttf"
           ]
         }
-      ]
+      ],
+      "expo-sqlite"
     ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -1,0 +1,21 @@
+query GetUserById($userId: UUID!) {
+  usersById(userId: $userId) {
+    id
+    firstName
+    lastName
+    avatarUrl
+    createdAt
+    updatedAt
+  }
+}
+
+query SearchUsers($searchTerm: String!) {
+  usersSearch(searchTerm: $searchTerm) {
+    id
+    firstName
+    lastName
+    avatarUrl
+    createdAt
+    updatedAt
+  }
+}

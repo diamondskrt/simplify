@@ -5,45 +5,25 @@ const config: CodegenConfig = {
   schema: 'http://127.0.0.1:54321/graphql/v1',
   documents: ['src/**/*.gql'],
   generates: {
-    /**
-     * GLOBAL SCHEMA TYPES
-     */
-    'src/shared/types/graphql.ts': {
-      plugins: ['typescript'],
-      config: {
-        useTypeImports: true,
-        enumsAsTypes: true,
-        skipTypename: false,
-        scalars: {
-          UUID: 'string',
-          JSON: 'Record<string, unknown>',
-          Datetime: 'string',
-        },
-      },
-    },
-    /**
-     * LOCAL GENERATED FILES
-     */
     'src/': {
       preset: 'near-operation-file',
       presetConfig: {
         extension: '.generated.ts',
         folder: '__generated__',
-        baseTypesPath: 'shared/types/graphql.ts',
       },
-      plugins: ['typescript-operations', 'typescript-react-apollo'],
-      config: {
-        useTypeImports: true,
-        withHooks: true,
-        withHOC: false,
-        withComponent: false,
-        dedupeFragments: true,
-        reactApolloVersion: 3,
-        skipTypename: false,
-      },
+      plugins: ['typescript-operations', 'typed-document-node'],
+    },
+    'src/shared/model/types.ts': {
+      plugins: ['typescript'],
     },
   },
-  ignoreNoDocuments: true,
+  config: {
+    scalars: {
+      Datetime: 'string',
+      Date: 'string',
+      UUID: 'string',
+      JSON: 'unknown',
+    },
+  },
 };
-
 export default config;

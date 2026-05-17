@@ -1,1 +1,1 @@
-export { Button, ButtonText, ButtonSpinner, ButtonIcon, ButtonGroup } from './button';
+export { UIButton, Button, ButtonText, ButtonSpinner, ButtonIcon, ButtonGroup } from './button';

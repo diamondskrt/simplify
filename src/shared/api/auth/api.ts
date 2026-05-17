@@ -6,7 +6,7 @@ import type {
   AuthResponse,
 } from '@supabase/supabase-js';
 
-import { supabaseClient } from '~/shared/lib';
+import { supabaseClient } from '../supabase-client';
 
 const authApi = {
   onAuthStateChange(setSession: (session: Session | null) => void) {
@@ -22,6 +22,12 @@ const authApi = {
     return data.session;
   },
 
+  async signUp(credentials: SignUpWithPasswordCredentials): Promise<AuthResponse['data']> {
+    const { data, error } = await supabaseClient.auth.signUp(credentials);
+    if (error) throw error;
+    return data;
+  },
+
   async signIn(
     credentials: SignInWithPasswordCredentials,
   ): Promise<AuthTokenResponsePassword['data']> {
@@ -33,12 +39,6 @@ const authApi = {
   async signOut(): Promise<void> {
     const { error } = await supabaseClient.auth.signOut();
     if (error) throw error;
-  },
-
-  async signUp(credentials: SignUpWithPasswordCredentials): Promise<AuthResponse['data']> {
-    const { data, error } = await supabaseClient.auth.signUp(credentials);
-    if (error) throw error;
-    return data;
   },
 };
 

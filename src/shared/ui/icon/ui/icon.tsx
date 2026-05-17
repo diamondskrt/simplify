@@ -1,9 +1,18 @@
+import type { Svg } from '@gluestack-ui/core/icon/creator';
+import { createIcon, PrimitiveIcon } from '@gluestack-ui/core/icon/creator';
 import { cssInterop } from 'nativewind';
 import React from 'react';
 
 import { Pressable } from '../../pressable';
-import { iconStyle, UIIcon } from '../config';
+import { iconStyle } from '../config';
 import type { IIConProps, IPressableIconProps } from '../model';
+
+const UIIcon = createIcon({
+  Root: PrimitiveIcon,
+}) as React.ForwardRefExoticComponent<
+  React.ComponentPropsWithoutRef<typeof PrimitiveIcon> &
+    React.RefAttributes<React.ComponentRef<typeof Svg>>
+>;
 
 cssInterop(UIIcon, {
   className: {
@@ -39,4 +48,4 @@ const PressableIcon = React.forwardRef<React.ComponentRef<typeof UIIcon>, IPress
 
 PressableIcon.displayName = 'PressableIcon';
 
-export { Icon, PressableIcon };
+export { UIIcon, Icon, PressableIcon };

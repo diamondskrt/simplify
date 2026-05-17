@@ -2,6 +2,8 @@ create extension if not exists "citext" with schema "public";
 
 create extension if not exists "pg_trgm" with schema "public";
 
+create extension if not exists "pg_graphql" with schema "graphql";
+
 create table "public"."users" (
   "id" uuid not null,
   "email" public.citext,
@@ -12,9 +14,6 @@ create table "public"."users" (
   "created_at" timestamp with time zone not null default timezone('utc'::text, now()),
   "updated_at" timestamp with time zone not null default timezone('utc'::text, now())
 );
-
-
-alter table "public"."users" enable row level security;
 
 CREATE INDEX idx_users_email_trgm ON public.users USING gin (email public.gin_trgm_ops);
 
@@ -30,6 +29,16 @@ alter table "public"."users" add constraint "users_id_fkey" FOREIGN KEY (id) REF
 
 alter table "public"."users" validate constraint "users_id_fkey";
 
+alter table "public"."users" enable row level security;
+
+create policy "Users can update own profile"
+on "public"."users"
+as permissive
+for update
+to public
+using ((auth.uid() = id))
+with check ((auth.uid() = id));
+
 set check_function_bodies = off;
 
 CREATE OR REPLACE FUNCTION public.handle_new_user()
@@ -39,12 +48,14 @@ CREATE OR REPLACE FUNCTION public.handle_new_user()
  SET search_path TO ''
 AS $function$
 begin
-  insert into public.users (id)
-  values (new.id);
+  insert into public.users (id, email)
+  values (new.id, new.email);
   return new;
 end;
 $function$
 ;
+
+CREATE TRIGGER on_auth_user_created AFTER INSERT ON auth.users FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();
 
 CREATE OR REPLACE FUNCTION public.handle_updated_at()
  RETURNS trigger
@@ -56,6 +67,11 @@ begin
 end;
 $function$
 ;
+
+CREATE TRIGGER users_handle_updated_at BEFORE UPDATE ON public.users FOR EACH ROW EXECUTE FUNCTION public.handle_updated_at();
+
+comment on schema public is e'@graphql({"introspection": true})';
+comment on schema public is e'@graphql({"inflect_names": true})';
 
 CREATE OR REPLACE FUNCTION public.users_by_id(user_id uuid)
  RETURNS public.users
@@ -132,17 +148,5 @@ grant trigger on table "public"."users" to "service_role";
 grant truncate on table "public"."users" to "service_role";
 
 grant update on table "public"."users" to "service_role";
-
-
-create policy "Users can update own profile"
-on "public"."users"
-as permissive
-for update
-to public
-using ((auth.uid() = id))
-with check ((auth.uid() = id));
-
-
-CREATE TRIGGER users_handle_updated_at BEFORE UPDATE ON public.users FOR EACH ROW EXECUTE FUNCTION public.handle_updated_at();
 
 

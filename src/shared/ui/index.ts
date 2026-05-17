@@ -1,9 +1,12 @@
 export { Box } from './box';
 export { Button, ButtonText, ButtonSpinner, ButtonIcon, ButtonGroup } from './button';
 export { Divider } from './divider';
+export { FormControlTextField, FormControlCTextField } from './form-control';
 export { HStack } from './h-stack';
 export { Heading } from './heading';
 export { Icon, PressableIcon } from './icon';
 export { Text } from './text';
+export { TextField, CTextField } from './text-field';
 export { ThemeSwitcher } from './theme-switcher';
+export { VStack } from './v-stack';
 export { View, SafeAreaView } from './view';

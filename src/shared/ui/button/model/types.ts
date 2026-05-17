@@ -1,13 +1,8 @@
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 import type { IIConProps } from '../../icon';
-import type {
-  buttonGroupStyle,
-  buttonIconStyle,
-  buttonStyle,
-  buttonTextStyle,
-  UIButton,
-} from '../config';
+import type { buttonGroupStyle, buttonIconStyle, buttonStyle, buttonTextStyle } from '../config';
+import type { UIButton } from '../ui';
 
 type IButtonProps = Omit<React.ComponentPropsWithoutRef<typeof UIButton>, 'context'> &
   VariantProps<typeof buttonStyle> & { className?: string };

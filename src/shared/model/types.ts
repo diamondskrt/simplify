@@ -10,9 +10,9 @@ export interface Scalars {
   BigFloat: { input: unknown; output: unknown };
   BigInt: { input: unknown; output: unknown };
   Cursor: { input: unknown; output: unknown };
-  Date: { input: unknown; output: unknown };
+  Date: { input: string; output: string };
   Datetime: { input: string; output: string };
-  JSON: { input: Record<string, unknown>; output: Record<string, unknown> };
+  JSON: { input: unknown; output: unknown };
   Opaque: { input: unknown; output: unknown };
   Time: { input: unknown; output: unknown };
   UUID: { input: string; output: string };
@@ -117,7 +117,10 @@ export interface DatetimeListFilter {
   overlaps?: InputMaybe<Scalars['Datetime']['input'][]>;
 }
 
-export type FilterIs = 'NOT_NULL' | 'NULL';
+export enum FilterIs {
+  NotNull = 'NOT_NULL',
+  Null = 'NULL',
+}
 
 /** Boolean expression comparing fields on type "Float" */
 export interface FloatFilter {
@@ -207,15 +210,16 @@ export interface OpaqueFilter {
 }
 
 /** Defines a per-field sorting order */
-export type OrderByDirection =
+export enum OrderByDirection {
   /** Ascending order, nulls first */
-  | 'AscNullsFirst'
+  AscNullsFirst = 'AscNullsFirst',
   /** Ascending order, nulls last */
-  | 'AscNullsLast'
+  AscNullsLast = 'AscNullsLast',
   /** Descending order, nulls first */
-  | 'DescNullsFirst'
+  DescNullsFirst = 'DescNullsFirst',
   /** Descending order, nulls last */
-  | 'DescNullsLast';
+  DescNullsLast = 'DescNullsLast',
+}
 
 export interface PageInfo {
   __typename?: 'PageInfo';
@@ -331,12 +335,13 @@ export type Users = Node & {
   __typename?: 'Users';
   avatarUrl?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['Datetime']['output'];
+  email?: Maybe<Scalars['String']['output']>;
   firstName?: Maybe<Scalars['String']['output']>;
   id: Scalars['UUID']['output'];
   lastName?: Maybe<Scalars['String']['output']>;
   /** Globally Unique Record Identifier */
   nodeId: Scalars['ID']['output'];
-  roles: Maybe<Scalars['String']['output']>[];
+  roles?: Maybe<Maybe<Scalars['String']['output']>[]>;
   updatedAt: Scalars['Datetime']['output'];
 };
 
@@ -365,6 +370,7 @@ export interface UsersFilter {
   and?: InputMaybe<UsersFilter[]>;
   avatarUrl?: InputMaybe<StringFilter>;
   createdAt?: InputMaybe<DatetimeFilter>;
+  email?: InputMaybe<StringFilter>;
   firstName?: InputMaybe<StringFilter>;
   id?: InputMaybe<UuidFilter>;
   lastName?: InputMaybe<StringFilter>;
@@ -380,6 +386,7 @@ export interface UsersFilter {
 export interface UsersInsertInput {
   avatarUrl?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['Datetime']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
   firstName?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['UUID']['input']>;
   lastName?: InputMaybe<Scalars['String']['input']>;
@@ -398,6 +405,7 @@ export interface UsersInsertResponse {
 export interface UsersOrderBy {
   avatarUrl?: InputMaybe<OrderByDirection>;
   createdAt?: InputMaybe<OrderByDirection>;
+  email?: InputMaybe<OrderByDirection>;
   firstName?: InputMaybe<OrderByDirection>;
   id?: InputMaybe<OrderByDirection>;
   lastName?: InputMaybe<OrderByDirection>;
@@ -407,6 +415,7 @@ export interface UsersOrderBy {
 export interface UsersUpdateInput {
   avatarUrl?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['Datetime']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
   firstName?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['UUID']['input']>;
   lastName?: InputMaybe<Scalars['String']['input']>;

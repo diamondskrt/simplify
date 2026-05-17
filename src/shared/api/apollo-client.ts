@@ -1,6 +1,6 @@
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client';
 
-import { useAuthStore } from '~/shared/api';
+import { useAuthStore } from './auth';
 
 const supabaseGrapqlUrl = process.env.EXPO_PUBLIC_SUPABASE_GRAPHQL_URL ?? '';
 const supabasePublishableApiKey = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_API_KEY ?? '';

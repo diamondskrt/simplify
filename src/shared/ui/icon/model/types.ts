@@ -7,7 +7,8 @@ import type {
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 import type { IPressableProps } from '../../pressable';
-import type { iconStyle, UIIcon } from '../config';
+import type { iconStyle } from '../config';
+import type { UIIcon } from '../ui';
 
 type ICreateIcon = React.ForwardRefExoticComponent<
   React.ComponentPropsWithoutRef<typeof PrimitiveIcon> &

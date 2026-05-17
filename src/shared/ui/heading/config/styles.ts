@@ -4,7 +4,7 @@ const baseStyle = isWeb
   : '';
 
 const headingStyle = tva({
-  base: `text-typography-900 font-heading tracking-sm my-0 font-bold ${baseStyle}`,
+  base: `font-heading tracking-sm my-0 font-bold text-background-foreground ${baseStyle}`,
   variants: {
     bold: {
       true: 'font-bold',

@@ -1,7 +1,7 @@
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 
 const buttonStyle = tva({
-  base: 'group/button flex-row items-center justify-center gap-2 rounded border data-[disabled=true]:opacity-40 data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-background-foreground',
+  base: 'group/button flex-row items-center justify-center gap-2 rounded-full border data-[disabled=true]:opacity-40 data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-background-foreground',
   compoundVariants: [
     {
       action: ['error', 'primary', 'secondary', 'success', 'warning'],

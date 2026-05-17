@@ -1,19 +1,28 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+import { createButton } from '@gluestack-ui/core/button/creator';
+import { useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import React from 'react';
+import { ActivityIndicator } from 'react-native';
 
-import {
-  buttonStyle,
-  UIButton,
-  SCOPE,
-  buttonTextStyle,
-  buttonIconStyle,
-  buttonGroupStyle,
-} from '../config';
+import { Icon } from '../../icon';
+import { Pressable } from '../../pressable';
+import { Text } from '../../text';
+import { View } from '../../view';
+import { buttonStyle, SCOPE, buttonTextStyle, buttonIconStyle, buttonGroupStyle } from '../config';
 import type { IButtonGroupProps, IButtonIconProps, IButtonProps, IButtonTextProps } from '../model';
 
+const Root = withStyleContext(Pressable, SCOPE);
+
+const UIButton = createButton({
+  Group: View,
+  Icon: Icon,
+  Root: Root,
+  Spinner: ActivityIndicator,
+  Text,
+});
+
 const Button = React.forwardRef<React.ComponentRef<typeof UIButton>, IButtonProps>(
-  ({ action = 'primary', className, size = 'xs', variant = 'solid', ...props }, ref) => {
+  ({ action = 'primary', className, size = 'md', variant = 'solid', ...props }, ref) => {
     return (
       <UIButton
         ref={ref}
@@ -105,4 +114,4 @@ ButtonSpinner.displayName = 'ButtonSpinner';
 ButtonIcon.displayName = 'ButtonIcon';
 ButtonGroup.displayName = 'ButtonGroup';
 
-export { Button, ButtonText, ButtonSpinner, ButtonIcon, ButtonGroup };
+export { UIButton, Button, ButtonText, ButtonSpinner, ButtonIcon, ButtonGroup };

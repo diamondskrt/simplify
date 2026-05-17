@@ -1,2 +1,2 @@
-export { SCOPE, UIButton } from './constants';
+export { SCOPE } from './constants';
 export { buttonStyle, buttonTextStyle, buttonIconStyle, buttonGroupStyle } from './styles';

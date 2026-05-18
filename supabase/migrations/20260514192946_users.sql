@@ -31,6 +31,11 @@ alter table "public"."users" validate constraint "users_id_fkey";
 
 alter table "public"."users" enable row level security;
 
+create policy "Enable read access for all users"
+on "public"."users"
+for select
+using (true);
+
 create policy "Users can update own profile"
 on "public"."users"
 as permissive
@@ -52,8 +57,7 @@ begin
   values (new.id, new.email);
   return new;
 end;
-$function$
-;
+$function$;
 
 CREATE TRIGGER on_auth_user_created AFTER INSERT ON auth.users FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();
 
@@ -65,47 +69,44 @@ begin
   new.updated_at = now();
   return new;
 end;
-$function$
-;
+$function$;
 
 CREATE TRIGGER users_handle_updated_at BEFORE UPDATE ON public.users FOR EACH ROW EXECUTE FUNCTION public.handle_updated_at();
 
 comment on schema public is e'@graphql({"introspection": true})';
 comment on schema public is e'@graphql({"inflect_names": true})';
 
-CREATE OR REPLACE FUNCTION public.users_by_id(user_id uuid)
- RETURNS public.users
- LANGUAGE sql
- STABLE
-AS $function$
-  select * from public.users where id = user_id limit 1;
-$function$
-;
+CREATE OR REPLACE FUNCTION public.user_by_id(user_id uuid)
+  RETURNS public.users
+  STABLE
+  LANGUAGE sql
+  AS
+$$
+  select *
+  from public.users
+  where id = user_id;
+$$;
 
 CREATE OR REPLACE FUNCTION public.users_search(search_term text)
- RETURNS public.users
- LANGUAGE sql
- STABLE
-AS $function$
-  select * from public.users 
+  RETURNS SETOF public.users
+  STABLE
+  LANGUAGE sql
+  AS
+$$
+  select *
+  from public.users 
   where
-	  email ilike '%' || search_term || '%'
-    or first_name ilike '%' || search_term || '%'
-    or last_name ilike '%' || search_term || '%'
-    or concat(first_name, ' ', last_name) ilike '%' || search_term || '%'
+    email % search_term
+    or first_name % search_term
+    or last_name % search_term
+    or concat(first_name, ' ', last_name) % search_term
   order by 
-    case
-	    when email ilike search_term then 1
-      when concat(first_name, ' ', last_name) ilike search_term then 2
-      when first_name ilike search_term then 3
-      when last_name ilike search_term then 4
-      else 5
-    end,
-    last_name, 
-    first_name
+    similarity(email, search_term) desc,
+    similarity(concat(first_name, ' ', last_name), search_term) desc,
+    similarity(first_name, search_term) desc,
+    similarity(last_name, search_term) desc
   limit 50;
-$function$
-;
+$$;
 
 grant delete on table "public"."users" to "anon";
 

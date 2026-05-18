@@ -8,7 +8,7 @@ import { Icon } from '../../icon';
 import { Pressable } from '../../pressable';
 import { Text } from '../../text';
 import { View } from '../../view';
-import { buttonStyle, SCOPE, buttonTextStyle, buttonIconStyle, buttonGroupStyle } from '../config';
+import { buttonGroupStyle, buttonIconStyle, buttonStyle, buttonTextStyle, SCOPE } from '../config';
 import type { IButtonGroupProps, IButtonIconProps, IButtonProps, IButtonTextProps } from '../model';
 
 const Root = withStyleContext(Pressable, SCOPE);

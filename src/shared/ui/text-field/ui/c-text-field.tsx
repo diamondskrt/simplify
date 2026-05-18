@@ -3,7 +3,7 @@ import React from 'react';
 import type { FieldValues } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
 
-import { Input, InputField, InputSlot, InputIcon } from '../../input';
+import { Input, InputField, InputIcon, InputSlot } from '../../input';
 import { useCTextFieldPassword } from '../hooks';
 import type { ICTextFieldProps } from '../model';
 

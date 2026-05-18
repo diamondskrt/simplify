@@ -1,4 +1,4 @@
-import { supabaseClient } from '~/shared/lib';
+import { supabaseClient } from './supabase-client';
 
 const storageApi = {
   async deleteFile(bucket: string, paths: string[]) {

@@ -1,8 +1,8 @@
 import type {
+  createIcon,
   IPrimitiveIcon,
   PrimitiveIcon,
   Svg,
-  createIcon,
 } from '@gluestack-ui/core/icon/creator';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 

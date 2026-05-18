@@ -9,4 +9,4 @@ export { Text } from './text';
 export { TextField, CTextField } from './text-field';
 export { ThemeSwitcher } from './theme-switcher';
 export { VStack } from './v-stack';
-export { View, SafeAreaView } from './view';
+export { View, SafeAreaView, ScrollView } from './view';

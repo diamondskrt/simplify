@@ -1,4 +1,4 @@
-import { View, Text } from '~/shared/ui';
+import { Text, View } from '~/shared/ui';
 
 export function HomePage() {
   return (

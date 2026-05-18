@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Link, useRouter } from 'expo-router';
 import { useForm } from 'react-hook-form';
 
-import { PASSWORD_MAX_CHARACTERS_COUNT, useSignUp } from '~/shared/api';
+import { PASSWORD_MAX_CHARACTERS_COUNT, useSignIn } from '~/shared/api';
 import {
   Button,
   ButtonText,
@@ -13,17 +13,17 @@ import {
   VStack,
 } from '~/shared/ui';
 
-import { signUpSchema } from '../config';
-import type { SignUpFormData } from '../model';
+import { signInSchema } from '../config';
+import type { SignInFormData } from '../model';
 
-export function SignUp() {
+export function SignIn() {
   const {
     control,
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
     reset,
-  } = useForm<SignUpFormData>({
-    resolver: zodResolver(signUpSchema),
+  } = useForm<SignInFormData>({
+    resolver: zodResolver(signInSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -33,13 +33,13 @@ export function SignUp() {
 
   const router = useRouter();
 
-  const { mutateAsync: signUp, isPending } = useSignUp();
+  const { mutateAsync: signIn, isPending } = useSignIn();
 
-  const isSignUpPending = isSubmitting || isPending;
+  const isSignInPending = isSubmitting || isPending;
 
-  const onSubmit = async (data: SignUpFormData) => {
+  const onSubmit = async (data: SignInFormData) => {
     try {
-      await signUp(data);
+      await signIn(data);
       reset();
       router.replace('/(tabs)/profile');
     } catch (error) {
@@ -51,7 +51,7 @@ export function SignUp() {
     <ScrollView keyboardShouldPersistTaps="handled">
       <VStack space="md" className="px-4">
         <Heading className="text-center" size="xl">
-          Sign Up
+          Sign In
         </Heading>
 
         <FormControlCTextField
@@ -85,14 +85,14 @@ export function SignUp() {
           }}
         />
 
-        <Button onPress={handleSubmit(onSubmit)} isDisabled={!isValid || isSignUpPending}>
-          <ButtonText>Sign Up</ButtonText>
+        <Button onPress={handleSubmit(onSubmit)} isDisabled={!isValid || isSignInPending}>
+          <ButtonText>Sign In</ButtonText>
         </Button>
 
         <Text>
-          Already have account?{' '}
-          <Link href="/(auth)/sign-in" className="text-primary">
-            Sign in
+          Don&apos;t have an account?{' '}
+          <Link href="/(auth)/sign-up" className="text-primary">
+            Sign up
           </Link>
         </Text>
       </VStack>

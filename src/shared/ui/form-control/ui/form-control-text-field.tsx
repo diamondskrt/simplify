@@ -7,13 +7,13 @@ import type { IFormControlTextFieldProps } from '../model';
 
 import {
   FormControl,
-  FormControlLabel,
-  FormControlLabelText,
-  FormControlHelper,
-  FormControlHelperText,
   FormControlError,
   FormControlErrorIcon,
   FormControlErrorText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlLabel,
+  FormControlLabelText,
 } from './form-control-items';
 
 const FormControlTextField = React.forwardRef<

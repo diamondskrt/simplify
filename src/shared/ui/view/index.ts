@@ -1,1 +1,1 @@
-export { View, SafeAreaView } from './ui';
+export { View, SafeAreaView, ScrollView } from './ui';

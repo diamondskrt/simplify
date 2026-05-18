@@ -14,7 +14,7 @@ const initialState = {
   session: null,
 };
 
-export const useAuthStore = create<AuthState>((set) => ({
+const useAuthStore = create<AuthState>((set) => ({
   ...initialState,
   setHydrated: (isHydrated) =>
     set({
@@ -23,3 +23,5 @@ export const useAuthStore = create<AuthState>((set) => ({
   setSession: (session) => set({ session }),
   reset: () => set(initialState),
 }));
+
+export { useAuthStore };

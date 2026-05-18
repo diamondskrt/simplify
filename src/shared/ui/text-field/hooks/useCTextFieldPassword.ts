@@ -2,7 +2,7 @@ import React from 'react';
 import type { FieldValues } from 'react-hook-form';
 import type { GestureResponderEvent } from 'react-native';
 
-import type { IPasswordType, ICTextFieldProps } from '../model';
+import type { ICTextFieldProps, IPasswordType } from '../model';
 
 export function useCTextFieldPassword<T extends FieldValues>({
   inputSlotProps,
@@ -24,9 +24,10 @@ export function useCTextFieldPassword<T extends FieldValues>({
     handleSetIsShowPassword();
   };
 
-  const gInputFieldProps = {
+  const gInputFieldProps: ICTextFieldProps<T>['inputFieldProps'] = {
     ...inputFieldProps,
     type: inputFieldProps?.type === 'password' ? passwordType : inputFieldProps?.type,
+    secureTextEntry: passwordType === 'password',
   };
 
   return {

@@ -4,7 +4,7 @@ import { useColorScheme } from 'nativewind';
 import React, { useEffect } from 'react';
 import { useColorScheme as useRNColorScheme, type ViewProps } from 'react-native';
 
-import { PREFERRED_THEME, useThemeStore, type ITheme } from '~/shared/lib';
+import { type ITheme, PREFERRED_THEME, useThemeStore } from '~/shared/lib';
 import { SafeAreaView } from '~/shared/ui';
 
 import { themeConfig } from '../config';

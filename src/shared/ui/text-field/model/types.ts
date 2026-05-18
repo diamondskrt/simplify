@@ -1,4 +1,4 @@
-import type { FieldValues, Control, Path } from 'react-hook-form';
+import type { Control, FieldValues, Path } from 'react-hook-form';
 
 import type { IIConProps } from '../../icon';
 import type { IInputFieldProps, IInputProps, IInputSlotProps } from '../../input';

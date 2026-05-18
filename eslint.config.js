@@ -3,12 +3,14 @@ const eslintPluginPerfectionist = require('eslint-plugin-perfectionist');
 const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
 const { defineConfig } = require('eslint/config');
 const tseslint = require('typescript-eslint');
+const js = require('@eslint/js');
 
 module.exports = defineConfig([
   expoConfig,
-  eslintPluginPrettierRecommended,
+  js.configs.recommended,
   tseslint.configs.strict,
   tseslint.configs.stylistic,
+  eslintPluginPrettierRecommended,
   {
     languageOptions: {
       parserOptions: {
@@ -39,8 +41,18 @@ module.exports = defineConfig([
           type: 'natural',
         },
       ],
+      'perfectionist/sort-named-imports': [
+        'error',
+        {
+          type: 'alphabetical',
+          order: 'asc',
+          ignoreCase: true,
+        },
+      ],
       'react/display-name': 'off',
       'import/no-named-as-default': 'off',
+      'no-console': ['error', { allow: ['warn', 'error'] }],
+      'no-alert': 'error',
     },
   },
   {

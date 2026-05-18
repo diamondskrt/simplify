@@ -3,7 +3,7 @@ import React from 'react';
 import type { GestureResponderEvent } from 'react-native';
 
 import type { UIInput } from '../../input';
-import { Input, InputField, InputSlot, InputIcon } from '../../input';
+import { Input, InputField, InputIcon, InputSlot } from '../../input';
 import type { ITextFieldProps } from '../model';
 
 const TextField = React.forwardRef<React.ComponentRef<typeof UIInput>, ITextFieldProps>(

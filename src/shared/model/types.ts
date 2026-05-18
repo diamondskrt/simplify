@@ -235,10 +235,10 @@ export interface Query {
   /** Retrieve a record by its `ID` */
   node?: Maybe<Node>;
   showLimit?: Maybe<Scalars['Float']['output']>;
-  usersById?: Maybe<Users>;
+  userById?: Maybe<Users>;
   /** A pagable collection of type `Users` */
   usersCollection?: Maybe<UsersConnection>;
-  usersSearch?: Maybe<Users>;
+  usersSearch?: Maybe<UsersConnection>;
 }
 
 /** The root type for querying data */
@@ -247,7 +247,7 @@ export interface QueryNodeArgs {
 }
 
 /** The root type for querying data */
-export interface QueryUsersByIdArgs {
+export interface QueryUserByIdArgs {
   userId: Scalars['UUID']['input'];
 }
 
@@ -264,6 +264,13 @@ export interface QueryUsersCollectionArgs {
 
 /** The root type for querying data */
 export interface QueryUsersSearchArgs {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  filter?: InputMaybe<UsersFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<UsersOrderBy[]>;
   searchTerm: Scalars['String']['input'];
 }
 

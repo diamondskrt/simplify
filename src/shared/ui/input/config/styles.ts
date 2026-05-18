@@ -1,7 +1,7 @@
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 
 const inputStyle = tva({
-  base: 'data-[hover=true]:border-outline-400 data-[focus=true]:border-primary-700 data-[focus=true]:hover:border-primary-700 data-[disabled=true]:hover:border-background-300 flex-row content-center items-center overflow-hidden border-primary data-[disabled=true]:opacity-40',
+  base: 'flex-row content-center items-center overflow-hidden border data-[focus=true]:border-primary data-[hover=true]:border-border data-[disabled=true]:opacity-40 data-[disabled=true]:hover:border-background data-[focus=true]:hover:border-primary',
 
   variants: {
     size: {
@@ -13,13 +13,13 @@ const inputStyle = tva({
 
     variant: {
       underlined:
-        'data-[invalid=true]:border-error-700 data-[invalid=true]:hover:border-error-700 data-[invalid=true]:data-[focus=true]:border-error-700 data-[invalid=true]:data-[focus=true]:hover:border-error-700 data-[invalid=true]:data-[disabled=true]:hover:border-error-700 rounded-none border-b data-[invalid=true]:border-b-2',
+        'rounded-none border-b data-[invalid=true]:border-b-2 data-[invalid=true]:border-error data-[invalid=true]:data-[focus=true]:border-error data-[invalid=true]:data-[disabled=true]:hover:border-error data-[invalid=true]:data-[focus=true]:hover:border-error data-[invalid=true]:hover:border-error',
 
       outline:
-        'data-[invalid=true]:border-error-700 data-[invalid=true]:hover:border-error-700 data-[invalid=true]:data-[focus=true]:border-error-700 data-[invalid=true]:data-[focus=true]:hover:border-error-700 data-[invalid=true]:data-[disabled=true]:hover:border-error-700 data-[focus=true]:web:ring-indicator-primary data-[invalid=true]:web:ring-indicator-error data-[invalid=true]:data-[focus=true]:hover:web:ring-indicator-error data-[invalid=true]:data-[disabled=true]:hover:web:ring-indicator-error rounded border data-[focus=true]:web:ring-1 data-[invalid=true]:web:ring-1 data-[focus=true]:web:ring-inset data-[invalid=true]:web:ring-inset data-[invalid=true]:data-[disabled=true]:hover:web:ring-1 data-[invalid=true]:data-[focus=true]:hover:web:ring-1 data-[invalid=true]:data-[disabled=true]:hover:web:ring-inset data-[invalid=true]:data-[focus=true]:hover:web:ring-inset',
+        'rounded border data-[invalid=true]:border-error data-[invalid=true]:data-[focus=true]:border-error data-[invalid=true]:data-[disabled=true]:hover:border-error data-[invalid=true]:data-[focus=true]:hover:border-error data-[invalid=true]:hover:border-error data-[focus=true]:web:ring-1 data-[invalid=true]:web:ring-1 data-[focus=true]:web:ring-inset data-[invalid=true]:web:ring-inset data-[focus=true]:web:ring-primary data-[invalid=true]:web:ring-error data-[invalid=true]:data-[disabled=true]:hover:web:ring-1 data-[invalid=true]:data-[focus=true]:hover:web:ring-1 data-[invalid=true]:data-[disabled=true]:hover:web:ring-inset data-[invalid=true]:data-[focus=true]:hover:web:ring-inset data-[invalid=true]:data-[disabled=true]:hover:web:ring-error data-[invalid=true]:data-[focus=true]:hover:web:ring-error',
 
       rounded:
-        'data-[invalid=true]:border-error-700 data-[invalid=true]:hover:border-error-700 data-[invalid=true]:data-[focus=true]:border-error-700 data-[invalid=true]:data-[focus=true]:hover:border-error-700 data-[invalid=true]:data-[disabled=true]:hover:border-error-700 data-[focus=true]:web:ring-indicator-primary data-[invalid=true]:web:ring-indicator-error data-[invalid=true]:data-[focus=true]:hover:web:ring-indicator-error data-[invalid=true]:data-[disabled=true]:hover:web:ring-indicator-error rounded-full border data-[focus=true]:web:ring-1 data-[invalid=true]:web:ring-1 data-[focus=true]:web:ring-inset data-[invalid=true]:web:ring-inset data-[invalid=true]:data-[disabled=true]:hover:web:ring-1 data-[invalid=true]:data-[focus=true]:hover:web:ring-1 data-[invalid=true]:data-[disabled=true]:hover:web:ring-inset data-[invalid=true]:data-[focus=true]:hover:web:ring-inset',
+        'rounded-full border data-[invalid=true]:border-error data-[invalid=true]:data-[focus=true]:border-error data-[invalid=true]:data-[disabled=true]:hover:border-error data-[invalid=true]:data-[focus=true]:hover:border-error data-[invalid=true]:hover:border-error data-[focus=true]:web:ring-1 data-[invalid=true]:web:ring-1 data-[focus=true]:web:ring-inset data-[invalid=true]:web:ring-inset data-[focus=true]:web:ring-primary data-[invalid=true]:web:ring-error data-[invalid=true]:data-[disabled=true]:hover:web:ring-1 data-[invalid=true]:data-[focus=true]:hover:web:ring-1 data-[invalid=true]:data-[disabled=true]:hover:web:ring-inset data-[invalid=true]:data-[focus=true]:hover:web:ring-inset data-[invalid=true]:data-[disabled=true]:hover:web:ring-error data-[invalid=true]:data-[focus=true]:hover:web:ring-error',
     },
   },
 });
@@ -43,7 +43,7 @@ const inputSlotStyle = tva({
 });
 
 const inputFieldStyle = tva({
-  base: 'ios:leading-[0px] h-full flex-1 px-3 py-0 text-background-foreground placeholder:text-muted web:cursor-text web:data-[disabled=true]:cursor-not-allowed',
+  base: 'ios:leading-[0px] h-full flex-1 px-3 py-0 text-background-foreground placeholder:text-muted-foreground web:cursor-text web:data-[disabled=true]:cursor-not-allowed',
 
   parentVariants: {
     variant: {

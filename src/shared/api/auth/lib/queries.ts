@@ -1,9 +1,9 @@
 import type { SignUpWithPasswordCredentials } from '@supabase/supabase-js';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { authApi } from './api';
-import { queryKeys } from './constants';
-import { useAuthStore } from './store';
+import { authApi } from '../api';
+import { queryKeys } from '../config';
+import { useAuthStore } from '../model/';
 
 const useSession = () => {
   return useQuery({

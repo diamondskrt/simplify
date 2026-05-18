@@ -1,4 +1,4 @@
-import { SunIcon, MonitorIcon, MoonIcon } from 'lucide-react-native';
+import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react-native';
 
 import type { ITheme } from '~/shared/lib';
 

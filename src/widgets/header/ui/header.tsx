@@ -1,6 +1,6 @@
 import { MenuIcon } from 'lucide-react-native';
 
-import { View, Text, HStack, Icon, ThemeSwitcher } from '~/shared/ui';
+import { HStack, Icon, Text, ThemeSwitcher, View } from '~/shared/ui';
 
 export function Header() {
   return (

@@ -3,7 +3,7 @@ import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/clien
 import { useAuthStore } from './auth';
 
 const supabaseGrapqlUrl = process.env.EXPO_PUBLIC_SUPABASE_GRAPHQL_URL ?? '';
-const supabasePublishableApiKey = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_API_KEY ?? '';
+const supabasePublishableKey = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? '';
 
 const httpLink = new HttpLink({
   uri: supabaseGrapqlUrl,
@@ -14,7 +14,7 @@ const authLink = new ApolloLink((operation, forward) => {
 
   operation.setContext({
     headers: {
-      apikey: supabasePublishableApiKey,
+      apikey: supabasePublishableKey,
       Authorization: session?.access_token ? `Bearer ${session.access_token}` : '',
     },
   });

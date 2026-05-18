@@ -1,1 +1,1 @@
-export type { IViewProps } from './types';
+export type { IViewProps, ISafeAreaViewProps, IScrollViewProps } from './types';

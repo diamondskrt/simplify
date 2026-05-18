@@ -2,17 +2,17 @@ import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import type { FieldValues } from 'react-hook-form';
 
 import type { Text } from '../../text';
-import type { ITextFieldProps, ICTextFieldProps } from '../../text-field';
+import type { ICTextFieldProps, ITextFieldProps } from '../../text-field';
 import type {
-  formControlStyle,
-  formControlLabelAstrickStyle,
+  formControlErrorIconStyle,
   formControlErrorStyle,
   formControlErrorTextStyle,
-  formControlErrorIconStyle,
-  formControlLabelStyle,
-  formControlLabelTextStyle,
   formControlHelperStyle,
   formControlHelperTextStyle,
+  formControlLabelAstrickStyle,
+  formControlLabelStyle,
+  formControlLabelTextStyle,
+  formControlStyle,
 } from '../config';
 import type { UIFormControl } from '../ui';
 

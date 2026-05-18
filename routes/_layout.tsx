@@ -6,7 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
 import { GluestackUIProvider } from '~/app/providers';
-import { useAuthStore, queryClient, apolloClient } from '~/shared/api';
+import { apolloClient, queryClient, useAuthStore } from '~/shared/api';
 import { useHydration } from '~/shared/hooks';
 
 import '../global.css';

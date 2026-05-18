@@ -1,12 +1,12 @@
 import type {
-  SignUpWithPasswordCredentials,
-  SignInWithPasswordCredentials,
-  Session,
-  AuthTokenResponsePassword,
   AuthResponse,
+  AuthTokenResponsePassword,
+  Session,
+  SignInWithPasswordCredentials,
+  SignUpWithPasswordCredentials,
 } from '@supabase/supabase-js';
 
-import { supabaseClient } from '../supabase-client';
+import { supabaseClient } from '../../supabase-client';
 
 const authApi = {
   onAuthStateChange(setSession: (session: Session | null) => void) {

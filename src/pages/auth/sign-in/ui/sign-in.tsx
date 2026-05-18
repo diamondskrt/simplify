@@ -1,9 +1,5 @@
-import { View, Text } from '~/shared/ui';
+import { SignIn } from '~/features/sign-in';
 
 export function SignInPage() {
-  return (
-    <View className="flex-1 items-center justify-center">
-      <Text>Sign In</Text>
-    </View>
-  );
+  return <SignIn />;
 }

@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client/react';
 
 import { GetUserByIdDocument } from '~/entities/profile';
 import { useAuthStore } from '~/shared/api';
-import { View, Text } from '~/shared/ui';
+import { Text, View } from '~/shared/ui';
 
 export function ProfilePage() {
   const session = useAuthStore((state) => state.session);
@@ -11,10 +11,11 @@ export function ProfilePage() {
       userId: session?.user.id ?? '',
     },
   });
-  console.log('user', res.data?.usersById);
+  const user = res.data?.userById;
+
   return (
     <View className="flex-1 items-center justify-center">
-      <Text>Profile</Text>
+      <Text>Profile {user?.email}</Text>
     </View>
   );
 }

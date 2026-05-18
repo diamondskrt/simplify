@@ -2,7 +2,7 @@ import z from 'zod';
 
 import { PASSWORD_MAX_CHARACTERS_COUNT } from '~/shared/api';
 
-const signUpSchema = z.object({
+const signInSchema = z.object({
   email: z
     .email({ message: 'Please enter a valid email address' })
     .min(1, { message: 'Email is required' }),
@@ -16,4 +16,4 @@ const signUpSchema = z.object({
     }),
 });
 
-export { signUpSchema };
+export { signInSchema };
